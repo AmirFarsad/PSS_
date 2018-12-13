@@ -1,0 +1,42 @@
+html * {
+	padding: 0.1px;
+}
+
+body {
+	background: #BBD2C5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #536976, #BBD2C5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.main-panel {
+	position: absolute;
+	top: 50%;
+	left: 2.5%;
+	width: 95%;
+	transform: translate(0, -50%);
+}
+
+.main-panel-s {
+	top: 40%;
+	transform: translate(0, -25%);
+}
+
+@keyframes scale {
+	0% {
+		transform: scale(0);
+	}
+
+	66% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+.scale {
+	animation: scale 1s;
+	animation-timing-function: cubic-bezier(.17, .45, .94, .69);
+}

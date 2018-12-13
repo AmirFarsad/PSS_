@@ -1,0 +1,17 @@
+{% extends "accounts/base.html" %}
+
+{% block body_block %}
+<h1>This is the main view</h1>
+{% if user.is_authenticated %}
+<h1><b>Welcome {{user.username}}</b></h1>
+{% if user.details.Firstname == 'amir' %}
+{{user.details.Firstname}}
+this is working
+{% endif %}
+{% else %}
+<p>click <a href="{% url 'accounts:login'%}">here</a> to go to login page</p>
+{% endif %}
+
+
+
+{% endblock %}

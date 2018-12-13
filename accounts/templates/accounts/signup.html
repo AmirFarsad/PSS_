@@ -1,0 +1,86 @@
+{% extends "accounts/base.html" %}
+
+{% block body_block %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row main-panel 	main-panel-s">
+        <div class="card col s12 m12 l8 offset-l2 xl4 offset-xl4 hoverable scale">
+            <div class="section center-align scale-transition">
+                <h5>
+                    ایجاد حساب کاربری
+                </h5>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.username}}
+                    <label for="username">نام کاربری</label>
+                    {% if form.username.errors %}
+                    <p>نام کاربری قبلا ثبت شده است</p>
+                    {% endif %}
+                </div>
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.password1}}
+                    <label for="password">کلمه عبور</label>
+                    {% if form.password1.errors %}
+                    <p>رمز عبور باید بیش از 6 کاراکتر باشد</p>
+                    {% endif %}
+                </div>
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.password2}}
+                    <label for="passwordRepeat">تکرار کلمه عبور</label>
+                    {% if form.password2.errors %}
+                    <p>تکرار رمز عبور مطابقت ندارد</p>
+                    {% endif %}
+                </div>
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.email}}
+                    <label for="mail">آدرس ایمیل</label>
+                    {% if form.email.errors %}
+                    <p>ایمیل وارد شده صحیح نمیباشد</p>
+                    {% endif %}
+                </div>
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.Firstname}}
+                    <label for="fname">نام</label>
+                </div>
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.Lastname}}
+                    <label for="lname">نام خانوادگی</label>
+                </div>
+                <div class="input-field col s12 m12 l12 xl12">
+                    {{form.Birth}}
+                    <label for="birthday">تاریخ تولد</label>
+                </div>
+
+                <p style="text-align: center">
+                    <label>
+                        {{form.terms}}
+                        <span>شرایط و قوانین استفاده از سامانه را می پذیرم</span>
+                    </label>
+                </p>
+
+
+
+            </div>
+            <div class="section">
+                <div class="row center-align">
+                    <div class="col s10 m6 l6 xl6 offset-s1 push-xl5 push-l5 push-m5" style="padding: 5px 0px">
+                        <button class="btn indigo waves-effect waves-light " type="submit" name="action">
+                            ایجاد حساب
+                            <i class="material-icons right">account_circle</i>
+                        </button>
+                    </div>
+                    <div class="col s10 m6 l6 xl6 offset-s1 pull-xl5 pull-l5 pull-m5" style="padding: 5px 0px">
+                        <a class="btn-flat waves-effect" href="{% url 'accounts:login' %}">
+                            ورود با حساب موجود
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
