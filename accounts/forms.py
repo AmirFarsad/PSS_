@@ -41,6 +41,18 @@ class UserForm(UserCreationForm):
             }
 
 
+class ChangePasswordForm(forms.Form):
+    confirmation_code = forms.CharField(max_length = 200)
+    new_password = forms.CharField(widget = forms.PasswordInput())
+    new_password_confirm = forms.CharField(widget = forms.PasswordInput())
+
+    def clean(value):
+        all_clean_data = super().clean()
+        n1 = all_clean_data['new_password']
+        n2 = all_clean_data['new_password_confirm']
+        if n1 != n2:
+            raise forms.ValidationError("passwords don't match")
+
 
 
 
