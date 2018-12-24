@@ -1,0 +1,39 @@
+{% extends "accounts/base.html" %}
+
+{% block head_block %}
+<title>
+    فراموشی کلمه عبور | سامانه جامع استارت آپ
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row main-panel">
+        <div class="card col s12 m12 l8 offset-l2 xl4 offset-xl4 hoverable scale">
+            <div class="section center-align">
+                <h5>
+                    فراموشی کلمه عبور
+                </h5>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <div class="input-field col s12 m12 l6 xl6">
+                    {{form.username}}
+                    <label for="username">نام کاربری</label>
+                </div>
+                {{error}}
+            </div>
+            <div class="col s10 m10 l4 xl4 offset-s1 offset-m1 offset-l1 offset-xl1" style="padding: 5px 0px">
+                <button class="btn waves-effect waves-light  indigo" type="submit" name="action">
+                    ارسال لینک بازیابی
+                    <i class="material-icons right">chevron_right</i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+{% endblock %}

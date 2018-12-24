@@ -15,4 +15,5 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(),name='logout'),
     path('change_password_user=<slug:slug>/',views.ChangePasswordView,name = 'change_password'),
     path('forgot_password/',views.ForgotPasswordView,name = 'forgot_password'),
+    path('success/',views.SuccessView.as_view(),name = 'success'),
 ]

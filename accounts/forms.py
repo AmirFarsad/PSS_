@@ -30,7 +30,7 @@ class UserForm(UserCreationForm):
      '''
 
     terms = forms.BooleanField(
-    error_messages={'required': 'You must accept the terms and conditions'},
+    error_messages={'required': 'You must accept terms and conditions'},
     )
 
     class Meta():
@@ -52,6 +52,10 @@ class ChangePasswordForm(forms.Form):
         n2 = all_clean_data['new_password_confirm']
         if n1 != n2:
             raise forms.ValidationError("passwords don't match")
+
+
+class ConfirmationCodeForm(forms.Form):
+    username = forms.CharField()
 
 
 

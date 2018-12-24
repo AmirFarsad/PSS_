@@ -1,6 +1,14 @@
-{% extends "accounts/base.html" %}
+﻿{% extends "accounts/base.html" %}
+
+{% block head_block %}
+<title>
+    خانه | سامانه جامع استارت آپ
+</title>
+
+{% endblock %}
 
 {% block body_block %}
+
 <h1>This is the main view</h1>
 {% if user.is_authenticated %}
 <h1><b>Welcome {{user.username}}</b></h1>
@@ -11,7 +19,5 @@ this is working
 {% else %}
 <p>click <a href="{% url 'accounts:login'%}">here</a> to go to login page</p>
 {% endif %}
-
-
 
 {% endblock %}

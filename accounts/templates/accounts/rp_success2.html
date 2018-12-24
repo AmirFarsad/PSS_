@@ -1,0 +1,21 @@
+{% extends "accounts/base.html" %}
+
+{% block head_block %}
+<title>
+    فراموشی کلمه عبور | سامانه جامع استارت آپ
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="success-message green accent-1 blue-grey-text">
+    تغییر کلمه عبور با موفقیت انجام شد
+    <br>
+    <a class="btn waves-effect waves-light" href="{% url "accounts:login" %}" style="margin: 20px;">
+        ورود به حساب
+    </a>
+</div>
+
+
+{% endblock %}

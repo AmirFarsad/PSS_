@@ -16,7 +16,17 @@ background: linear-gradient(to right, #536976, #BBD2C5); /* W3C, IE 10+/ Edge, F
 	width: 95%;
 	transform: translate(0, -50%);
 }
-
+.success-message{
+	padding: 20px;
+	display: inline-block;
+	border-radius: 4px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	text-align: center;
+}
 .main-panel-s {
 	top: 40%;
 	transform: translate(0, -25%);
