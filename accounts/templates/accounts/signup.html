@@ -21,6 +21,7 @@
             <div class="section">
                 <div class="input-field col s12 m12 l12 xl12">
                     {{form.username}}
+                    
                     <label for="username">نام کاربری</label>
                     {% if form.username.errors %}
                     <p>نام کاربری قبلا ثبت شده است</p>
@@ -58,6 +59,20 @@
                 <div class="input-field col s12 m12 l12 xl12">
                     {{form.Birth}}
                     <label for="birthday">تاریخ تولد</label>
+                </div>
+                <div class="input-field col s12 m12 l8 xl8">
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                    <div class="g-recaptcha" data-sitekey="6LeTw4UUAAAAAOGwJYQ0lSh3UOrzbyI_c8jJ5WPm"></div>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li>
+                            {{ message }}
+                        </li>
+                            {% endfor %}
+                    </ul>
+                    {% endif %}
+
                 </div>
 
                 <p style="text-align: center">

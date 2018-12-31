@@ -10,6 +10,12 @@ import random
 from django.core.mail import send_mail
 from django.contrib.auth.password_validation import validate_password, MinimumLengthValidator
 
+#used for recatcha
+import json
+import urllib
+from django.contrib import messages
+
+
 
 
 
@@ -24,6 +30,39 @@ class SignUpView(CreateView):
     form_class = forms.UserForm
     success_url = reverse_lazy('accounts:login')
     template_name = 'accounts/signup.html'
+
+
+    
+    form_invalid_message = 'لطفا فیلد من ربات نیستم را کامل کنید'
+    def form_valid(self, form):
+
+        recaptcha_response = self.request.POST.get('g-recaptcha-response')
+        url = 'https://www.google.com/recaptcha/api/siteverify'
+        values = {
+            'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        data = urllib.parse.urlencode(values).encode()
+        req =  urllib.request.Request(url, data=data)
+        response = urllib.request.urlopen(req)
+        result = json.loads(response.read().decode())
+        ''' End reCAPTCHA validation '''
+        
+        if result['success']:
+            form.save()
+            messages.success(self.request, 'New comment added with success!')
+
+            return super(SignUpView, self).form_valid(form)
+        else:
+            
+            messages.error(self.request, self.form_invalid_message)
+            return super().form_invalid(form)
+
+
+    def form_invalid(self, form):
+        messages.error(self.request, self.form_invalid_message)
+        return super(SignUpView, self).form_invalid(form)
+
 
 
 
