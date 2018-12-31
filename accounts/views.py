@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 import random
 from django.core.mail import send_mail
-from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.password_validation import validate_password, MinimumLengthValidator
 
 
 
@@ -72,7 +72,6 @@ def ForgotPasswordView(request):
 
 
 
-
 def ChangePasswordView(request,slug):
     if request.method == 'POST':
         data = request.POST.copy()
@@ -86,6 +85,7 @@ def ChangePasswordView(request,slug):
             if user is not None:
                 u = models.UserModel.objects.get(username__exact=username)
                 password = data.get('new_password')
+
                 try:
                     validate_password(password,user=u, password_validators=None)
                     u.set_password(password)               
@@ -97,12 +97,10 @@ def ChangePasswordView(request,slug):
                     error3 ='کلمه عبور نمیتواند خیلی ساده باشد'
                     return render(request,'accounts/rp_2.html',{'form':form,'error1':error1,'error2':error2,'error3':error3})
 
-            else:
-                error = 'کد تایید وارد شده صحیح نمیباشد'
-                return render(request,'accounts/rp_2.html',{'form':form,'error':error})
-       # else:
-        #    return HttpResponse("<h1>forms aren't valid</h1>")
 
+            else:
+                error = 'کد بازیابی وارد شده صحیح نمیباشد'
+                return render(request,'accounts/rp_2.html',{'form':form,'error':error})
     else:
         form = forms.ChangePasswordForm()
 

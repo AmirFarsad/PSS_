@@ -19,24 +19,40 @@
             </div>
             <div class="divider"></div>
             <div class="section">
-                <div class="input-field col s12 m12 l6 xl6">
+                <div class="input-field col s12 m12 l12 xl12">
                     {{form.confirmation_code}}
-                    <label for="password">کد تایید</label>
+                    <label for="password">کد بازیابی</label>
+                    {% if error %}
+                    <span class="helper-text" data-error="wrong" data-success="right">{{error}}</span>
+                    {% endif %}
                 </div>
                 <div class="input-field col s12 m12 l6 xl6">
                     {{form.new_password}}
-                    {{form.errors}}
+
+                    {% if error1 %}
+                    <span class="helper-text" data-error="wrong" data-success="right">
+                        {{error1}}<br />
+                        {{error2}}<br />
+                        {{error3}}<br />
+                    </span>
+                    
+                    {% endif %}
+
+
                     <label for="password">کلمه عبور جدید</label>
                 </div>
                 <div class="input-field col s12 m12 l6 xl6">
                     {{form.new_password_confirm}}
                     <label for="password_r">تکرار کلمه عبور</label>
+                    {% if form.errors %}
+                    <span class="helper-text" data-error="wrong" data-success="right">کلمات عبور هم خوانی ندارد</span>
+                    {% endif %}
                 </div>
             </div>
-            {{error}}
-            {{error1}}<br />
-            {{error2}}<br />
-            {{error3}}<br />
+            
+
+            
+
             <div class="col s10 m10 l10 xl10 offset-s1 offset-m1 offset-l1 offset-xl1" style="padding: 5px 0px">
                 <button class="btn waves-effect waves-light  indigo" type="submit" name="action" style="width: 100%; margin: 20px;">
                     تغییر کلمه عبور
